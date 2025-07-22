@@ -7,14 +7,24 @@ function SearchBar() {
   return (
     <Box
       component="form"
-      sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+       sx={{ '& .MuiTextField-root': { m: 0, width: '130ch' } }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="standard-basic" label="Standard" variant="standard" />
+      <div>
+        <TextField id="basic" 
+                   label="Search product" 
+                   InputProps={{sx: {transition: "none !imporant", "&before, &after": {transition: "none !important"}}}}
+                   InputLabelProps={{sx: {transition: "none !important"}}}
+                   error = ""
+                   onChange= ""
+                   
+
+        />
+      </div>
     </Box>
+
+
   );
 }
 
