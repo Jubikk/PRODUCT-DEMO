@@ -1,25 +1,33 @@
 import * as React from "react"
 import {Stack, TablePagination} from "@mui/material";
 
-function PageNav () {
-  
-  const AppPaganation = ({onPageChange, currentPage, totalPage}) => {
 
+function PageNav () {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const totalItems = 50; 
+  const totalPage = Math.ceil(totalItems/rowsPerPage);
+
+  const AppPaganation = ({onPageChange, currentPage, totalPage}) => {
     return(
       <Stack spacing={2} className="items-center py-4">
-        <TablePagination  
-        count={totalPage}
+        <TablePagination 
+        component="div" 
+        count={totalItems}
         page={currentPage}
+        onPageChange={handlePageChange}
         rowsPerPage={rowsPerPage}
-        onRowsPerPageChange = {(event,value) => changeRowsPerPage(value)}
-        onChange={(event, value) => onPageChange(value)}
-        color="primary"
-        variant="outlined"
-        shape="rounded"
+        onRowsPerPageChange={handleRowsPerPageChange}
+        rowsPerPageOptions={[5, 10, 25]}
         />
       </Stack>
     );
   };
+
+
+
+
 
   return(
     <></>
