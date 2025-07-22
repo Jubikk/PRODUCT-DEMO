@@ -9,9 +9,9 @@ function App(props) {
     <Container className= "py-4 rounded-2xl">
       <Card >
         <CardContent>
-          <Header/>
-          <SearchBar/>
-          <MainCard/>
+            <Header/>
+            <SearchBar/>
+            <MainCard/>
         </CardContent>
       </Card>
     </Container>

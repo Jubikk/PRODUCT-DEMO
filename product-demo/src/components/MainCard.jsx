@@ -2,6 +2,15 @@ import * as React from 'react'
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,Chip} from '@mui/material'
 
 function MainCard(cellphone) {
+
+  
+
+
+
+
+
+
+
   return (
     <TableContainer className='pt-6 rounded-lg'>
       <Table>
