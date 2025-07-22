@@ -5,7 +5,7 @@ import { Card,CardContent, Container } from '@mui/material';
 
 function App(props) {
   return (
-    <Container>
+    <Container className= "p-4">
       <Card>
         <CardContent>
         <Header/>
