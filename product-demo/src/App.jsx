@@ -6,8 +6,8 @@ import { Card,CardContent, Container } from '@mui/material';
 
 function App(props) {
   return (
-    <Container className= "py-4">
-      <Card>
+    <Container className= "py-4 rounded-2xl">
+      <Card >
         <CardContent>
           <Header/>
           <SearchBar/>
