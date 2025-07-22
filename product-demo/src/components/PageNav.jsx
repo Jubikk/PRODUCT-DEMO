@@ -1,38 +1,33 @@
-import * as React from "react"
-import {Stack, TablePagination} from "@mui/material";
+import React, { useState } from "react";
+import { Stack, TablePagination } from "@mui/material";
 
-
-function PageNav () {
-
-  const [currentPage, setCurrentPage] = useState(1);
+function PageNav() {
+  const [currentPage, setCurrentPage] = useState(0); // 0-based index
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const totalItems = 50; 
-  const totalPage = Math.ceil(totalItems/rowsPerPage);
+  const totalItems = 50;
 
-  const AppPaganation = ({onPageChange, currentPage, totalPage}) => {
-    return(
-      <Stack spacing={2} className="items-center py-4">
-        <TablePagination 
-        component="div" 
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const handleRowsPerPageChange = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setCurrentPage(0); // reset to first page
+  };
+
+  return (
+    <Stack spacing={2} className="items-center py-4">
+      <TablePagination
+        component="div"
         count={totalItems}
         page={currentPage}
         onPageChange={handlePageChange}
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleRowsPerPageChange}
-        rowsPerPageOptions={[5, 10, 25]}
-        />
-      </Stack>
-    );
-  };
-
-
-
-
-
-  return(
-    <></>
+        rowsPerPageOptions={[5, 10, 25, 50]}
+      />
+    </Stack>
   );
-
 }
 
-export default PageNav
+export default PageNav;
