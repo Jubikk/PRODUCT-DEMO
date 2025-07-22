@@ -2,6 +2,7 @@ import * as React from 'react';
 import Header from './components/Header.jsx'
 import SearchBar from './components/SearchBar.jsx';
 import MainCard from './components/MainCard.jsx';
+import PageNav from './components/PageNav.jsx';
 import { Card,CardContent, Container } from '@mui/material';
 
 function App(props) {
@@ -12,6 +13,7 @@ function App(props) {
             <Header/>
             <SearchBar/>
             <MainCard/>
+            <PageNav/>
         </CardContent>
       </Card>
     </Container>
