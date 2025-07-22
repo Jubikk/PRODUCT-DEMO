@@ -4,7 +4,7 @@ import { Typography, Box } from '@mui/material';
 
 function Header() {
   return (
-    <Box className="bg-primary text-black flex justify-center py-4 mb-4">
+    <Box className="bg-blue-500 text-white font-bold flex justify-center py-4 mb-4">
       <Typography variant="h5">PRODUCTS DEMO</Typography>
     </Box>
   );
