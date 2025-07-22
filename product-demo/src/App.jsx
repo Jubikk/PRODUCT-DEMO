@@ -1,15 +1,17 @@
 import * as React from 'react';
 import Header from './components/Header.jsx'
 import SearchBar from './components/SearchBar.jsx';
+import MainCard from './components/MainCard.jsx';
 import { Card,CardContent, Container } from '@mui/material';
 
 function App(props) {
   return (
-    <Container className= "p-4">
+    <Container className= "py-4">
       <Card>
         <CardContent>
-        <Header/>
-        <SearchBar/>
+          <Header/>
+          <SearchBar/>
+          <MainCard/>
         </CardContent>
       </Card>
     </Container>
