@@ -7,10 +7,10 @@ function MainCard(cellphone) {
       <Table>
         <TableHead className="bg-gray-100" font >
           <TableRow>
-            <TableCell sx={{fontWeight:"bold"}} >Thumbnail</TableCell>
-            <TableCell sx={{fontWeight:"bold"}}>Name</TableCell>
-            <TableCell sx={{fontWeight:"bold"}}>Description</TableCell>
-            <TableCell sx={{fontWeight:"bold"}}>Price</TableCell>
+            <TableCell className= "w-[100px] px-2 py-4 text-sm" sx={{fontWeight:"bold"}} >Thumbnail</TableCell>
+            <TableCell className= "w-[150 px]-2 py-4 text-sm"sx={{fontWeight:"bold"}}>Name</TableCell>
+            <TableCell className="w-[400px] px-2 py-4 text-sm" sx={{fontWeight:"bold"}}>Description</TableCell>
+            <TableCell className="w-[120px] px-2 py-4 text-sm"sx={{fontWeight:"bold"}}>Price</TableCell>
           </TableRow>
         </TableHead>
       </Table>
