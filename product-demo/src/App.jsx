@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '@mui/material/Button'
+import Header from './components/Header.jsx'
 
 function App(props) {
   return (
     <div>
-      <Button variant="contained" >Hello I'm Joebeck!</Button>
+      <Header/>
     </div>
   );
 }
