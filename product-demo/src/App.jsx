@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import SearchBar from './components/SearchBar.jsx';
 import MainCard from './components/MainCard.jsx';
 import PageNav from './components/PageNav.jsx';
+import products from './data/products.js';
 import { Card,CardContent, Container } from '@mui/material';
 
 function App(props) {
@@ -12,7 +13,7 @@ function App(props) {
         <CardContent>
             <Header/>
             <SearchBar/>
-            <MainCard/>
+            <MainCard products={products}/>
             <PageNav/>
         </CardContent>
       </Card>
