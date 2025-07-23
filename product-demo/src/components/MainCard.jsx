@@ -1,6 +1,6 @@
 // src/components/MainCard.jsx
 import * as React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip,Typography } from '@mui/material';
 
 function MainCard({ products }) {
   return (
@@ -14,21 +14,33 @@ function MainCard({ products }) {
             <TableCell className="w-[120px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Price</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.id} hover>
-              <TableCell>
-                <img src={product.thumbnail} alt={product.name} className="w-16 h-16 rounded object-cover" />
-              </TableCell>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>{product.description}</TableCell>
-              <TableCell>
-                ₱{product.price.toLocaleString()}
-                <Chip label={`${product.discount}% OFF`} color="primary" size="small" className="ml-2" />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+          <TableBody>
+            {products.map((product) => (
+              <TableRow key={product.id} hover>
+                <TableCell>
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="w-16 h-16 rounded object-cover"
+                  />
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1">{product.title}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="body2">{product.description}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1">₱{product.price}</Typography>
+                  <Chip
+                    label={`${product.discountPercentage}% OFF`}
+                    color="primary"
+                    size="small"
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
       </Table>
     </TableContainer>
   );
