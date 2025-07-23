@@ -4,19 +4,19 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip,
 
 function MainCard({ products }) {
   return (
-    <TableContainer className='pt-6 rounded-lg'>
-      <Table>
+    <TableContainer className="pt-6 rounded-3xl">
+      <Table >
         <TableHead className="bg-gray-100">
           <TableRow>
             <TableCell className="w-[80px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Thumbnail</TableCell>
             <TableCell className="w-[80px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Name</TableCell>
-            <TableCell className="w-[400px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Description</TableCell>
-            <TableCell className="w-[120px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Price</TableCell>
+            <TableCell className="w-[460px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Description</TableCell>
+            <TableCell className="w-[60px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Price</TableCell>
           </TableRow>
         </TableHead>
           <TableBody>
             {products.map((product) => (
-              <TableRow key={product.id} hover>
+              <TableRow key={product.id} hover className="cursor-pointer">
                 <TableCell>
                   <img
                     src={product.thumbnail}
@@ -31,7 +31,7 @@ function MainCard({ products }) {
                   <Typography variant="body2">{product.description}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle1">₱{product.price}</Typography>
+                  <Typography variant="subtitle1" className="text-blue-500" sx={{fontWeight:"bold"}}>₱{product.price}</Typography>
                   <Chip
                     label={`${Math.round(product.discountPercentage)}% OFF`}
                     color="primary"
