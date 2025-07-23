@@ -1,6 +1,6 @@
+// utils/product.js
 
-
-const fetchProducts = async () => {
+export const fetchProducts = async () => {
   try {
     const res = await fetch('https://dummyjson.com/products/category/smartphones');
     const data = await res.json();
@@ -10,5 +10,3 @@ const fetchProducts = async () => {
     return [];
   }
 };
-
-export default fetchProducts;
