@@ -1,17 +1,17 @@
-import * as React from 'react'
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,Chip} from '@mui/material'
+// src/components/MainCard.jsx
+import * as React from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip } from '@mui/material';
 
-function MainCard(cellphone) {
-
+function MainCard({ products }) {
   return (
     <TableContainer className='pt-6 rounded-lg'>
       <Table>
-        <TableHead className="bg-gray-100" font >
+        <TableHead className="bg-gray-100">
           <TableRow>
-            <TableCell className= "w-[80px] px-2 py-4 text-sm" sx={{fontWeight:"bold"}} >Thumbnail</TableCell>
-            <TableCell className= "w-[80px] px-2 py-4 text-sm"sx={{fontWeight:"bold"}}>Name</TableCell>
-            <TableCell className="w-[400px] px-2 py-4 text-sm" sx={{fontWeight:"bold"}}>Description</TableCell>
-            <TableCell className="w-[120px] px-2 py-4 text-sm"sx={{fontWeight:"bold"}}>Price</TableCell>
+            <TableCell className="w-[80px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Thumbnail</TableCell>
+            <TableCell className="w-[80px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Name</TableCell>
+            <TableCell className="w-[400px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Description</TableCell>
+            <TableCell className="w-[120px] px-2 py-4 text-sm" sx={{ fontWeight: "bold" }}>Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -20,12 +20,11 @@ function MainCard(cellphone) {
               <TableCell>
                 <img src={product.thumbnail} alt={product.name} className="w-16 h-16 rounded object-cover" />
               </TableCell>
+              <TableCell>{product.name}</TableCell>
+              <TableCell>{product.description}</TableCell>
               <TableCell>
-                <Typography variant="subtitle1">{product.name}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle1">₱{product.price}</Typography>
-                <Chip label={`${product.discount}% OFF`} color="primary" size="small" />
+                ₱{product.price.toLocaleString()}
+                <Chip label={`${product.discount}% OFF`} color="primary" size="small" className="ml-2" />
               </TableCell>
             </TableRow>
           ))}
@@ -35,4 +34,4 @@ function MainCard(cellphone) {
   );
 }
 
-export default MainCard
+export default MainCard;
