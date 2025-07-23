@@ -33,7 +33,7 @@ function MainCard({ products }) {
                 <TableCell>
                   <Typography variant="subtitle1">₱{product.price}</Typography>
                   <Chip
-                    label={`${product.discountPercentage}% OFF`}
+                    label={`${Math.round(product.discountPercentage)}% OFF`}
                     color="primary"
                     size="small"
                   />
