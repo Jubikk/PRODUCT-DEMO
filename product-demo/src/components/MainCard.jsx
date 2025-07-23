@@ -3,14 +3,6 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
 
 function MainCard(cellphone) {
 
-  
-
-
-
-
-
-
-
   return (
     <TableContainer className='pt-6 rounded-lg'>
       <Table>
@@ -22,6 +14,22 @@ function MainCard(cellphone) {
             <TableCell className="w-[120px] px-2 py-4 text-sm"sx={{fontWeight:"bold"}}>Price</TableCell>
           </TableRow>
         </TableHead>
+        <TableBody>
+          {products.map((product) => (
+            <TableRow key={product.id} hover>
+              <TableCell>
+                <img src={product.thumbnail} alt={product.name} className="w-16 h-16 rounded object-cover" />
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle1">{product.name}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle1">₱{product.price}</Typography>
+                <Chip label={`${product.discount}% OFF`} color="primary" size="small" />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   );

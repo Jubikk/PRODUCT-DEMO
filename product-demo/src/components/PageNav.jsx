@@ -12,7 +12,7 @@ function PageNav() {
 
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setCurrentPage(0); // reset to first page
+    setCurrentPage(0);
   };
 
   return (
