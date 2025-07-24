@@ -17,6 +17,7 @@ function ProductModal({ open, onClose, product }) {
 
   if (!product) return null;
 
+
   const images = product.images && product.images.length > 0 
     ? product.images 
     : [product.thumbnail];
@@ -41,7 +42,7 @@ function ProductModal({ open, onClose, product }) {
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="lg"
+      maxWidth="md"
       fullWidth
       PaperProps={{
         sx: {
@@ -76,64 +77,47 @@ function ProductModal({ open, onClose, product }) {
               {product.title}
             </Typography>
           </Box>
-          
           <Grid container spacing={4}>
-            <Grid item xs={12} md={6} sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'center', 
-              alignItems: 'center',
-              minHeight: '500px'
-            }}>
-              <Box sx={{ 
-                width: '100%', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Box
-                  sx={{
-                    position: 'relative',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '100%',
-                    maxWidth: '450px',
-                    height: '400px',
-                    backgroundColor: '#f8f9fa',
-                    borderRadius: 2,
-                    overflow: 'hidden',
-                    mb: 2
-                  }}
-                >
-                  <img
-                    src={images[currentImageIndex]}
-                    alt={product.title}
-                    style={{
-                      maxWidth: '85%',
-                      maxHeight: '85%',
-                      width: 'auto',
-                      height: 'auto',
-                      objectFit: 'contain'
+            <Grid item xs={1} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ width: '100%', maxWidth: '500px' }}>
+              
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '100%',
+                      maxWidth: '350px',
+                      height: '300px',
+                      borderRadius: 2,
+                      overflow: 'hidden',
+                      mb: 2
                     }}
-                  />
-                  
+                  >
+                    <img
+                      src={images[currentImageIndex]}
+                      alt={product.title}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block',
+                        margin: 'auto'
+                      }}
+                    />
                   {images.length > 1 && (
                     <>
                       <IconButton
                         onClick={handlePrevImage}
                         sx={{
                           position: 'absolute',
-                          left: 8,
+                          left: 16,
                           top: '50%',
                           transform: 'translateY(-50%)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                          '&:hover': { 
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                          }
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.9)' }
                         }}
                       >
                         <ChevronLeft />
@@ -143,15 +127,11 @@ function ProductModal({ open, onClose, product }) {
                         onClick={handleNextImage}
                         sx={{
                           position: 'absolute',
-                          right: 8,
+                          right: 16,
                           top: '50%',
                           transform: 'translateY(-50%)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                          '&:hover': { 
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                          }
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.9)' }
                         }}
                       >
                         <ChevronRight />
@@ -161,15 +141,7 @@ function ProductModal({ open, onClose, product }) {
                 </Box>
 
                 {images.length > 1 && (
-                  <Box sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'center', 
-                    gap: 1,
-                    flexWrap: 'wrap',
-                    maxWidth: '450px',
-                    width: '100%'
-                  }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '350px', width: '100%', margin: '0 auto', mt: 2 }}>
                     {images.map((image, index) => (
                       <Box
                         key={index}
@@ -182,11 +154,8 @@ function ProductModal({ open, onClose, product }) {
                           cursor: 'pointer',
                           border: currentImageIndex === index ? '2px solid #1976d2' : '2px solid transparent',
                           opacity: currentImageIndex === index ? 1 : 0.7,
-                          transition: 'all 0.2s ease',
-                          '&:hover': { 
-                            opacity: 1,
-                            transform: 'scale(1.05)'
-                          }
+                          '&:hover': { opacity: 1 },
+                          mx: 0.5
                         }}
                       >
                         <img
@@ -206,7 +175,7 @@ function ProductModal({ open, onClose, product }) {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' , }}>
                 <Box sx={{ mb: 3 }}>
                   <Typography variant="h6" color="primary" sx={{ mb: 1 }}>
                     ₱{product.price}
@@ -231,7 +200,6 @@ function ProductModal({ open, onClose, product }) {
                     {product.description}
                   </Typography>
                 </Box>
-                
                 {(product.brand || product.rating || product.stock) && (
                   <Box sx={{ mb: 4 }}>
                     {product.brand && (
@@ -251,7 +219,6 @@ function ProductModal({ open, onClose, product }) {
                     )}
                   </Box>
                 )}
-                
                 <Box sx={{ mt: 'auto', display: 'flex', gap: 2 }}>
                   <Button
                     variant="contained"
