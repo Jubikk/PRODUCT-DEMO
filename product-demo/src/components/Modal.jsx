@@ -78,32 +78,35 @@ function ProductModal({ open, onClose, product }) {
             </Typography>
           </Box>
           <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ position: 'relative', mb: 2 }}>
-            
-                <Box
-                  sx={{
-                    position: 'relative',
-                    paddingBottom: '100%', 
-                    backgroundColor: '#f5f5f5',
-                    borderRadius: 2,
-                    overflow: 'hidden'
-                  }}
-                >
-                  <img
-                    src={images[currentImageIndex]}
-                    alt={product.title}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
+            <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ width: '100%', maxWidth: '500px' }}>
+              
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'contain'
+                      maxWidth: '350px',
+                      height: '300px',
+                      borderRadius: 2,
+                      overflow: 'hidden',
+                      mb: 2
                     }}
-                  />
-                  
-             
+                  >
+                    <img
+                      src={images[currentImageIndex]}
+                      alt={product.title}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block',
+                        margin: 'auto'
+                      }}
+                    />
                   {images.length > 1 && (
                     <>
                       <IconButton
@@ -138,7 +141,7 @@ function ProductModal({ open, onClose, product }) {
                 </Box>
 
                 {images.length > 1 && (
-                  <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', mt: 2 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', mt: 2 }}>
                     {images.map((image, index) => (
                       <Box
                         key={index}
@@ -151,7 +154,8 @@ function ProductModal({ open, onClose, product }) {
                           cursor: 'pointer',
                           border: currentImageIndex === index ? '2px solid #1976d2' : '2px solid transparent',
                           opacity: currentImageIndex === index ? 1 : 0.7,
-                          '&:hover': { opacity: 1 }
+                          '&:hover': { opacity: 1 },
+                          mx: 0.5
                         }}
                       >
                         <img
@@ -173,7 +177,7 @@ function ProductModal({ open, onClose, product }) {
             <Grid item xs={12} md={6}>
               <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' , }}>
                 <Box sx={{ mb: 3 }}>
-                  <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold', mb: 1 }}>
+                  <Typography variant="h6" color="primary" sx={{ mb: 1 }}>
                     ₱{product.price}
                   </Typography>
                   {product.discountPercentage > 0 && (
@@ -181,12 +185,9 @@ function ProductModal({ open, onClose, product }) {
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                         Discount:
                       </Typography>
-                      <Chip
-                        label={`${Math.round(product.discountPercentage)}% OFF`}
-                        color="error"
-                        size="medium"
-                        sx={{ fontWeight: 'bold' }}
-                      />
+                      <Typography variant="body2" color="error" fontSize="17px" sx={{ mb: 1 }}>
+                       {`${(product.discountPercentage)}% OFF`}
+                      </Typography>
                     </Box>
                   )}
                 </Box>
