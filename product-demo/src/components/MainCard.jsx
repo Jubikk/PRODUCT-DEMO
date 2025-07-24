@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip,Typography } from '@mui/material';
 
-function MainCard({ products }) {
+function MainCard({ products, onProductClick }) {
   return (
     <TableContainer className="pt-6 rounded-3xl">
       <Table >
@@ -16,7 +16,7 @@ function MainCard({ products }) {
         </TableHead>
           <TableBody>
             {products.map((product) => (
-              <TableRow key={product.id} hover className="cursor-pointer">
+              <TableRow key={product.id} hover className="cursor-pointer" onClick={() => onProductClick(product)}>
                 <TableCell>
                   <img
                     src={product.thumbnail}
