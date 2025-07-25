@@ -122,7 +122,6 @@ function ProductModal({ open, onClose, product }) {
                       >
                         <ChevronLeft />
                       </IconButton>
-                      
                       <IconButton
                         onClick={handleNextImage}
                         sx={{
@@ -139,23 +138,23 @@ function ProductModal({ open, onClose, product }) {
                     </>
                   )}
                 </Box>
-
                 {images.length > 1 && (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '350px', width: '100%', margin: '0 auto', mt: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', maxWidth: { xs: '90vw', sm: 300, md: 350 }, width: '100%', margin: '0 auto', mt: 1 }}>
                     {images.map((image, index) => (
                       <Box
                         key={index}
                         onClick={() => handleThumbnailClick(index)}
                         sx={{
-                          width: 60,
-                          height: 60,
+                          width: { xs: 40, sm: 50, md: 60 },
+                          height: { xs: 40, sm: 50, md: 60 },
                           borderRadius: 1,
                           overflow: 'hidden',
                           cursor: 'pointer',
                           border: currentImageIndex === index ? '2px solid #1976d2' : '2px solid transparent',
                           opacity: currentImageIndex === index ? 1 : 0.7,
                           '&:hover': { opacity: 1 },
-                          mx: 0.5
+                          mx: 0.5,
+                          mb: 0.5
                         }}
                       >
                         <img
