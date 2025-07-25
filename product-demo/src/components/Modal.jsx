@@ -77,8 +77,8 @@ function ProductModal({ open, onClose, product }) {
               {product.title}
             </Typography>
           </Box>
-          <Grid container spacing={4}>
-            <Grid item xs={1} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ minHeight: 500 }}>
+            <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: 350 }}>
                 <Box sx={{ width: '100%', maxWidth: '500px' }}>
               
                   <Box
@@ -87,11 +87,12 @@ function ProductModal({ open, onClose, product }) {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: '100%',
-                      maxWidth: '350px',
                       height: '300px',
                       borderRadius: 2,
                       overflow: 'hidden',
-                      mb: 2
+                      mb: 2,
+                      position: 'relative',
+                      flexDirection: 'row'
                     }}
                   >
                     <img
@@ -225,7 +226,7 @@ function ProductModal({ open, onClose, product }) {
                     fullWidth
                     sx={{ py: 1.5 }}
                   >
-                    Add to Cart
+                    Site with this product
                   </Button>
                   <Button
                     variant="outlined"
