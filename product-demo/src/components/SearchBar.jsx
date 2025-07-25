@@ -3,11 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-
 function SearchBar({ products, onSearchResult }) {
-
   const [search, setSearch] = useState('');
-
   const handleChange = (e) => {
     const value = e.target.value;
     setSearch(value);
