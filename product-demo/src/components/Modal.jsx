@@ -3,18 +3,22 @@ import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
+  DialogActions,
   IconButton,
   Typography,
   Box,
   Chip,
   Button,
   Grid,
-  CircularProgress
+  CircularProgress,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import { Close, ChevronLeft, ChevronRight } from '@mui/icons-material';
 import SiteModal from './SiteModal';
 
 function ProductModal({ open, onClose, product }) {
+  const isMobile = useMediaQuery('(max-width:600px)');
   const [siteModalOpen, setSiteModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -234,25 +238,72 @@ function ProductModal({ open, onClose, product }) {
                       )}
                     </Box>
                   )}
-                  <Box sx={{ mt: 'auto', display: 'flex', gap: 2 }}>
-                    <Button
-    variant="contained"
-    size="large"
-    fullWidth
-    sx={{ py: 1.5 }}
-    onClick={() => setSiteModalOpen(true)}
-  >
-    Search Sites for availability
-  </Button>
-                    <Button
-                      variant="outlined"
-                      size="large"
-                      sx={{ py: 1.5, minWidth: 120 }}
-                      onClick={onClose}
-                    >
-                      CLOSE
-                    </Button>
-                  </Box>
+                  {isMobile ? (
+                    <Box sx={{ px: 2, pb: 1, position: 'relative' }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        sx={{ fontWeight: 'bold', fontSize: 12, py: 1, mb: 4, borderRadius: 2, display: 'block', mx: 'auto' }}
+                        onClick={() => setSiteModalOpen(true)}
+                      >
+                        SEARCH SITES FOR AVAILABILITY
+                      </Button>
+                      <Button
+                        onClick={onClose}
+                        sx={{
+                          position: 'absolute',
+                          right: 12,
+                          bottom: 4,
+                          fontSize: 12,
+                          color: 'text.secondary',
+                          boxShadow: 'none',
+                          minWidth: 'auto',
+                          p: 0,
+                          background: 'none',
+                          '&:hover': { background: 'none', textDecoration: 'underline' },
+                          border: 'none',
+                          fontWeight: 400
+                        }}
+                        disableRipple
+                        disableElevation
+                      >
+                        CLOSE
+                      </Button>
+                    </Box>
+                  ) : (
+                    <Box sx={{ px: 2, pb: 3, pt: 1, position: 'relative', minHeight: 70 }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ fontWeight: 'bold', fontSize: 18, py: 2, px: 7, borderRadius: 2, display: 'block', mx: 'auto', minWidth: 320 }}
+                        onClick={() => setSiteModalOpen(true)}
+                      >
+                        SEARCH SITES FOR AVAILABILITY
+                      </Button>
+                      <Button
+                        onClick={onClose}
+                        sx={{
+                          position: 'absolute',
+                          right: 18,
+                          bottom: 10,
+                          fontSize: 13,
+                          color: 'text.secondary',
+                          boxShadow: 'none',
+                          minWidth: 'auto',
+                          p: 0,
+                          background: 'none',
+                          '&:hover': { background: 'none', textDecoration: 'underline' },
+                          border: 'none',
+                          fontWeight: 400
+                        }}
+                        disableRipple
+                        disableElevation
+                      >
+                        CLOSE
+                      </Button>
+                    </Box>
+                  )}
                 </Box>
               </Grid>
             </Grid>
