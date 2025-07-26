@@ -64,7 +64,7 @@ function ProductModal({ open, onClose, product }) {
           }
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, py: 2, borderTopLeftRadius: 8, borderTopRightRadius: 8, borderBottom: '1px solid #eee', background: '#fafbfd', minHeight: 56 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, py: 2, borderTopLeftRadius: 8, borderTopRightRadius: 8, borderBottom: '1px solid #eee', background: '#fafbfd', minHeight: 75 }}>
           <Box>
             <Typography variant="overline" color="text.secondary" sx={{ display: 'block', fontSize: 9, fontWeight: 'bold' }}>
               {product.category?.toUpperCase() || 'PRODUCT'}
