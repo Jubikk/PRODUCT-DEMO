@@ -60,32 +60,31 @@ function ProductModal({ open, onClose, product }) {
           }
         }}
       >
-        <DialogContent sx={{ p: 0, position: 'relative' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, py: 2, borderTopLeftRadius: 8, borderTopRightRadius: 8, borderBottom: '1px solid #eee', background: '#fafbfd', minHeight: 56 }}>
+          <Box>
+            <Typography variant="overline" color="text.secondary" sx={{ display: 'block', fontSize: 9, fontWeight: 'bold' }}>
+              {product.category?.toUpperCase() || 'PRODUCT'}
+            </Typography>
+            <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold', lineHeight: 1.2 }}>
+              {product.title}
+            </Typography>
+          </Box>
           <IconButton
             onClick={onClose}
             sx={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              zIndex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.9)'
-              }
+              ml: 1,
+              backgroundColor: 'rgba(255,255,255,0.7)',
+              '&:hover': { backgroundColor: 'rgba(255,255,255,0.9)' }
             }}
+            aria-label="close"
           >
             <Close />
           </IconButton>
+        </Box>
+        <DialogContent sx={{ p: 0, position: 'relative' }}>
 
           <Box sx={{ p: 3 }}>
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="overline" color="text.secondary" sx={{ mb: 1, display: 'block' }}>
-                {product.category?.toUpperCase() || 'PRODUCT'}
-              </Typography>
-              <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 2 }}>
-                {product.title}
-              </Typography>
-            </Box>
+
             <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ minHeight: 500 }}>
               <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: 350 }}>
                   <Box sx={{ width: '100%', maxWidth: '500px' }}>
