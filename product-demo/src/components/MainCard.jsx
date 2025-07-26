@@ -5,7 +5,7 @@ import PageNav from './PageNav';
 
 import { Skeleton } from '@mui/material';
 
-function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalItems, onPageChange, onRowsPerPageChange, isLoading, isSearching }) {
+function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalItems, onPageChange, onRowsPerPageChange, isLoading, isSearching, search }) {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   if (isMobile) {
@@ -29,7 +29,9 @@ function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalIte
             </Paper>
           ) : products.length === 0 ? (
             <Paper elevation={0} sx={{ p: 2, mb: 2, textAlign: 'center', color: 'text.secondary' }}>
-              No products found.
+              {isSearching === false && search && search.length > 0
+                ? 'No products matched your search keyword.'
+                : 'No products found.'}
             </Paper>
           ) : (
             products.map((product) => (
@@ -107,7 +109,9 @@ function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalIte
                 ) : products.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={4} align="center" sx={{ color: 'text.secondary' }}>
-                      No products found.
+                      {isSearching === false && search && search.length > 0
+                        ? 'No products matched your search keyword.'
+                        : 'No products found.'}
                     </TableCell>
                   </TableRow>
                 ) : (

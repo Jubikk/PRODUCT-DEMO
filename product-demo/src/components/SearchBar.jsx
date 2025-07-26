@@ -14,6 +14,7 @@ function SearchBar({ products, onSearchResult, onSearchStart, onSearchEnd }) {
   const handleChange = (e) => {
     const value = e.target.value;
     setSearch(value);
+    if (typeof onSearchChange === 'function') onSearchChange(value);
     setIsSearching(true);
     if (onSearchStart) onSearchStart();
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -29,8 +30,10 @@ function SearchBar({ products, onSearchResult, onSearchStart, onSearchEnd }) {
     }, 400);
   };
 
+
   const handleClear = () => {
     setSearch('');
+    if (typeof onSearchChange === 'function') onSearchChange('');
     setIsSearching(true);
     if (onSearchStart) onSearchStart();
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -41,6 +44,7 @@ function SearchBar({ products, onSearchResult, onSearchStart, onSearchEnd }) {
       if (onSearchEnd) onSearchEnd();
     }, 200);
   };
+
 
   return (
     <Box

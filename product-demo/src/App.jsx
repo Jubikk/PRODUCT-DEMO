@@ -16,6 +16,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const getProducts = async () => {
@@ -55,6 +56,7 @@ function App() {
             }}
             onSearchStart={() => setIsSearching(true)}
             onSearchEnd={() => setIsSearching(false)}
+            onSearchChange={setSearch}
           />  
           <MainCard 
             products={paginatedProducts} 
@@ -69,6 +71,7 @@ function App() {
             }}
             isLoading={isLoading}
             isSearching={isSearching}
+            search={search}
           />
         </CardContent>
       </Card>
