@@ -22,6 +22,8 @@ function App() {
     const getProducts = async () => {
       setIsLoading(true);
       const result = await fetchProducts();
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
       setProducts(result);
       setFilteredProducts(result);
       setIsLoading(false);
