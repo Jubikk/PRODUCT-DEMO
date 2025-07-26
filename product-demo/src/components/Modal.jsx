@@ -8,7 +8,8 @@ import {
   Box,
   Chip,
   Button,
-  Grid
+  Grid,
+  CircularProgress
 } from '@mui/material';
 import { Close, ChevronLeft, ChevronRight } from '@mui/icons-material';
 import SiteModal from './SiteModal';
@@ -16,13 +17,18 @@ import SiteModal from './SiteModal';
 function ProductModal({ open, onClose, product }) {
   const [siteModalOpen, setSiteModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Reset imageLoaded when image changes
+  React.useEffect(() => {
+    setImageLoaded(false);
+  }, [currentImageIndex, product]);
 
   if (!product) return null;
 
-
-  const images = product.images && product.images.length > 0 
+  const images = product && product.images && product.images.length > 0 
     ? product.images 
-    : [product.thumbnail];
+    : [product?.thumbnail];
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) => 
@@ -98,16 +104,23 @@ function ProductModal({ open, onClose, product }) {
                         flexDirection: 'row'
                       }}
                     >
+                      {!imageLoaded && (
+                        <Box sx={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, background: 'rgba(255,255,255,0.5)' }}>
+                          <CircularProgress />
+                        </Box>
+                      )}
                       <img
                         src={images[currentImageIndex]}
                         alt={product.title}
+                        onLoad={() => setImageLoaded(true)}
+                        onError={() => setImageLoaded(true)}
                         style={{
                           maxWidth: '100%',
                           maxHeight: '100%',
                           width: 'auto',
                           height: 'auto',
                           objectFit: 'contain',
-                          display: 'block',
+                          display: imageLoaded ? 'block' : 'none',
                           margin: 'auto'
                         }}
                       />

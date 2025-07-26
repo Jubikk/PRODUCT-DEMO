@@ -14,11 +14,15 @@ function App() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const getProducts = async () => {
+      setIsLoading(true);
       const result = await fetchProducts();
       setProducts(result);
       setFilteredProducts(result);
+      setIsLoading(false);
     };
 
     getProducts();
@@ -48,7 +52,7 @@ function App() {
               setFilteredProducts(results);
               setCurrentPage(0);
             }}
-          />
+          />  
           <MainCard 
             products={paginatedProducts} 
             onProductClick={handleProductClick}
@@ -60,6 +64,7 @@ function App() {
               setRowsPerPage(parseInt(event.target.value, 10));
               setCurrentPage(0);
             }}
+            isLoading={isLoading}
           />
         </CardContent>
       </Card>
