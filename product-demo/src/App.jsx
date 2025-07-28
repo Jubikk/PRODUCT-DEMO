@@ -5,7 +5,7 @@ import MainCard from './components/MainCard';
 import PageNav from './components/PageNav';
 import ProductModal from './components/Modal';
 import { Card, CardContent, Container } from '@mui/material';
-import { fetchProducts } from './utils/products.js'; 
+import { fetchProducts } from './services/api.js'; 
 
 function App() {
   const [products, setProducts] = useState([]);
