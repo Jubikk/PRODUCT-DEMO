@@ -10,10 +10,10 @@ const initialFormState = {
   price: '',
   discountPercentage: '',
   brand: '',
-  category: 'smartphones', // Default category
+  category: 'smartphones', 
   stock: '',
   rating: '',
-  images: [''] // Start with one empty image URL
+  images: [''] 
 };
 
 const ProductManager = () => {
@@ -36,7 +36,7 @@ const ProductManager = () => {
       discountPercentage: parseFloat(form.discountPercentage) || 0,
       stock: parseInt(form.stock, 10),
       rating: parseFloat(form.rating) || 0,
-      images: form.images.filter(img => img.trim() !== '') // Remove empty image URLs
+      images: form.images.filter(img => img.trim() !== '')
     };
     localProducts.addProduct(newProduct);
     setProducts(localProducts.getProducts());
@@ -52,7 +52,7 @@ const ProductManager = () => {
       discountPercentage: parseFloat(form.discountPercentage) || 0,
       stock: parseInt(form.stock, 10),
       rating: parseFloat(form.rating) || 0,
-      images: form.images.filter(img => img.trim() !== '') // Remove empty image URLs
+      images: form.images.filter(img => img.trim() !== '')
     };
     localProducts.updateProduct(updatedProduct);
     setProducts(localProducts.getProducts());

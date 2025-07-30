@@ -1,4 +1,3 @@
-// src/components/ProductModal.jsx
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -23,7 +22,6 @@ function ProductModal({ open, onClose, product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Reset imageLoaded when image changes
   React.useEffect(() => {
     setImageLoaded(false);
   }, [currentImageIndex, product]);

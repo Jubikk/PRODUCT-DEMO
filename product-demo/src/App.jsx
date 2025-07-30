@@ -6,7 +6,8 @@ import PageNav from './components/PageNav';
 import ProductModal from './components/Modal';
 import ProductManager from './components/ProductManager';
 import { Card, CardContent, Container } from '@mui/material';
-import { fetchProducts } from './services/api.js'; 
+import { fetchProducts } from './services/api.js';
+import styles from './App.module.css';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -49,22 +50,12 @@ function App() {
   );
 
   return (
-    <Container className="py-4 rounded-2xl">
+    <Container className={styles.container}>
       <Card>
         <CardContent>
           <Header />
-          <div style={{ 
-            display: 'flex', 
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: 'stretch',
-            gap: '0.75rem',
-            margin: '1rem 0',
-            width: '100%'
-          }}>
-            <div style={{
-              flex: 1,
-              minWidth: 0 // Prevents flex item from overflowing container
-            }}>
+          <div className={styles.contentContainer}>
+            <div className={styles.searchContainer}>
               <SearchBar
                 products={products}
                 onSearchResult={results => {
@@ -77,31 +68,10 @@ function App() {
                 fullWidth
               />
             </div>
-            <div style={{
-              width: { xs: '100%', sm: 'auto' },
-              minWidth: { sm: '180px' }
-            }}>
+            <div className={styles.buttonContainer}>
               <button 
                 onClick={() => setShowProductManager(!showProductManager)}
-                style={{
-                  padding: '8px 16px',
-                  backgroundColor: '#3b82f6',
-                  color: 'white',
-                  borderRadius: '4px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  fontWeight: '500',
-                  fontSize: '0.875rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.025em',
-                  height: '40px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%',
-                  boxSizing: 'border-box'
-                }}
+                className={styles.manageButton}
               >
                 {showProductManager ? 'Back to Products' : 'Manage Products'}
               </button>
