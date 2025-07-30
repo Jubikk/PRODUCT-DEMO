@@ -55,11 +55,16 @@ function App() {
           <Header />
           <div style={{ 
             display: 'flex', 
-            alignItems: 'center', 
-            gap: '1rem',
-            margin: '1rem 0' 
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'stretch',
+            gap: '0.75rem',
+            margin: '1rem 0',
+            width: '100%'
           }}>
-            <div style={{ flex: 1 }}>
+            <div style={{
+              flex: 1,
+              minWidth: 0 // Prevents flex item from overflowing container
+            }}>
               <SearchBar
                 products={products}
                 onSearchResult={results => {
@@ -69,16 +74,20 @@ function App() {
                 onSearchStart={() => setIsSearching(true)}
                 onSearchEnd={() => setIsSearching(false)}
                 onSearchChange={setSearch}
+                fullWidth
               />
             </div>
-            <div>
+            <div style={{
+              width: { xs: '100%', sm: 'auto' },
+              minWidth: { sm: '180px' }
+            }}>
               <button 
                 onClick={() => setShowProductManager(!showProductManager)}
                 style={{
-                  padding: '0.5rem 1rem',
+                  padding: '8px 16px',
                   backgroundColor: '#3b82f6',
                   color: 'white',
-                  borderRadius: '0.25rem',
+                  borderRadius: '4px',
                   border: 'none',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
@@ -86,8 +95,12 @@ function App() {
                   fontSize: '0.875rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.025em',
-                  height: '100%',
-                  minHeight: '36px' // Match Material-UI input height
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  boxSizing: 'border-box'
                 }}
               >
                 {showProductManager ? 'Back to Products' : 'Manage Products'}
