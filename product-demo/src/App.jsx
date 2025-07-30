@@ -49,6 +49,11 @@ function App() {
     currentPage * rowsPerPage + rowsPerPage
   );
 
+  const handleProductsUpdate = (updatedProducts) => {
+    setProducts(updatedProducts);
+    setFilteredProducts(updatedProducts);
+  };
+
   return (
     <Container className={styles.container}>
       <Card>
@@ -80,7 +85,10 @@ function App() {
           
           {showProductManager ? (
             <div style={{ marginTop: '1rem' }}>
-              <ProductManager />
+              <ProductManager 
+                products={products} 
+                onProductsUpdate={handleProductsUpdate} 
+              />
             </div>
           ) : (
             <MainCard 

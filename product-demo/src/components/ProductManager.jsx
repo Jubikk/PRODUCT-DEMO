@@ -16,16 +16,11 @@ const initialFormState = {
   images: [''] 
 };
 
-const ProductManager = () => {
-  const [products, setProducts] = useState([]);
+const ProductManager = ({ products = [], onProductsUpdate }) => {
   const [form, setForm] = useState(initialFormState);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  useEffect(() => {
-    setProducts(localProducts.getProducts());
-  }, []);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -39,7 +34,9 @@ const ProductManager = () => {
       images: form.images.filter(img => img.trim() !== '')
     };
     localProducts.addProduct(newProduct);
-    setProducts(localProducts.getProducts());
+    if (onProductsUpdate) {
+      onProductsUpdate([...localProducts.getProducts()]);
+    }
     setIsAddModalOpen(false);
     setForm(initialFormState);
   };
@@ -55,7 +52,9 @@ const ProductManager = () => {
       images: form.images.filter(img => img.trim() !== '')
     };
     localProducts.updateProduct(updatedProduct);
-    setProducts(localProducts.getProducts());
+    if (onProductsUpdate) {
+      onProductsUpdate([...localProducts.getProducts()]);
+    }
     setIsEditModalOpen(false);
     setForm(initialFormState);
   };
@@ -63,7 +62,9 @@ const ProductManager = () => {
   const handleDeleteProduct = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       localProducts.deleteProduct(id);
-      setProducts(localProducts.getProducts());
+      if (onProductsUpdate) {
+        onProductsUpdate([...localProducts.getProducts()]);
+      }
     }
   };
   
