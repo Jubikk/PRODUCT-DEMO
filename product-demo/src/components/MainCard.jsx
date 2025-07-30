@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Typography, useMediaQuery, Box, Paper } from '@mui/material';
+import TruncatedText from './TruncatedText';
 
 import PageNav from './PageNav';
 
@@ -51,9 +52,11 @@ function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalIte
                   <Typography variant="subtitle1" fontWeight={700} gutterBottom>
                     {product.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                    {product.description.length > 60 ? product.description.slice(0, 60) + '...' : product.description}
-                  </Typography>
+                  <TruncatedText 
+                    text={product.description} 
+                    maxLength={125}
+                    className="text-gray-600 text-sm"
+                  />
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Typography variant="subtitle1" color="primary" fontWeight={700}>
                       ₱{product.price}
@@ -96,7 +99,7 @@ function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalIte
                   <TableRow key={i}>
                     <TableCell><Skeleton variant="rectangular" width={64} height={64} sx={{ borderRadius: 2 }} /></TableCell>
                     <TableCell><Skeleton width="60%" height={28} /></TableCell>
-                    <TableCell><Skeleton width="90%" height={18} /></TableCell>
+                    <TableCell><Skeleton width="90%" height={36} /></TableCell>
                     <TableCell><Skeleton width="40%" height={24} /></TableCell>
                   </TableRow>
                 ))
@@ -128,7 +131,11 @@ function MainCard({ products, onProductClick, currentPage, rowsPerPage, totalIte
                         <Typography variant="subtitle1">{product.title}</Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="body2">{product.description}</Typography>
+                        <TruncatedText 
+                          text={product.description} 
+                          maxLength={205}
+                          className="text-gray-600"
+                        />
                       </TableCell>
                       <TableCell>
                         <Typography variant="subtitle1" className="text-blue-500" sx={{fontWeight:"bold"}}>₱{product.price}</Typography>
