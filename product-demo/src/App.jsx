@@ -7,6 +7,7 @@ import ProductModal from './components/Modal';
 import ProductManager from './components/ProductManager';
 import { Card, CardContent, Container } from '@mui/material';
 import { fetchProducts } from './services/api.js';
+import localProducts from './services/localProducts';
 import styles from './App.module.css';
 
 function App() {
@@ -23,17 +24,47 @@ function App() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const getProducts = async () => {
+    const syncProducts = async () => {
       setIsLoading(true);
-      const result = await fetchProducts();
-      
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setProducts(result);
-      setFilteredProducts(result);
-      setIsLoading(false);
+      try {
+        // Check if we need to import API products
+        const API_DATA_VERSION = '1.0'; // Increment this if you want to re-import API data
+        const lastApiVersion = localStorage.getItem('apiDataVersion');
+        
+        // Always get current products from localStorage
+        let storedProducts = localProducts.getProducts();
+        
+        // If first time loading or version changed, import API products
+        const shouldImportApiProducts = !lastApiVersion || lastApiVersion !== API_DATA_VERSION;
+        
+        if (shouldImportApiProducts) {
+          console.log('Importing products from API...');
+          // Clear existing products to avoid duplicates
+          localProducts.clearAllProducts();
+          
+          // Fetch and import API products
+          const apiProducts = await fetchProducts();
+          apiProducts.forEach(product => localProducts.addProduct(product));
+          
+          // Update stored products reference
+          storedProducts = localProducts.getProducts();
+          
+          // Mark API version to prevent re-importing
+          localStorage.setItem('apiDataVersion', API_DATA_VERSION);
+          console.log('Successfully imported', storedProducts.length, 'products from API');
+        }
+        
+        // Update state with current products
+        setProducts(storedProducts);
+        setFilteredProducts(storedProducts);
+      } catch (error) {
+        console.error('Error syncing products:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    getProducts();
+    syncProducts();
   }, []);
 
   const handleProductClick = (product) => {

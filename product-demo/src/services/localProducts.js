@@ -1,36 +1,68 @@
 
 
+const STORAGE_KEY = 'products';
+
 const getProducts = () => {
-  const products = localStorage.getItem('products');
-  return products ? JSON.parse(products) : [];
+  try {
+    const products = localStorage.getItem(STORAGE_KEY);
+    return products ? JSON.parse(products) : [];
+  } catch (error) {
+    console.error('Error getting products from localStorage:', error);
+    return [];
+  }
 }
 
 const addProduct = (product) => {
-  const products = getProducts();
-  products.push(product);
-  localStorage.setItem('products', JSON.stringify(products));
+  try {
+    const products = getProducts();
+    // Check if product with same ID already exists
+    if (!products.some(p => p.id === product.id)) {
+      products.push(product);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+    }
+    return products;
+  } catch (error) {
+    console.error('Error adding product to localStorage:', error);
+    throw error;
+  }
 } 
 
-const updateProduct = (updateProduct ) => {
-  const products = getProducts();   
-  const index = products.findIndex(p => p.id === updateProduct.id); 
-  if (index !== -1) {
-    products[index] = updateProduct;
-    localStorage.setItem('products', JSON.stringify(products));
+const updateProduct = (updatedProduct) => {
+  try {
+    const products = getProducts();
+    const index = products.findIndex(p => p.id === updatedProduct.id);
+    if (index !== -1) {
+      products[index] = updatedProduct;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+    }
+    return products;
+  } catch (error) {
+    console.error('Error updating product in localStorage:', error);
+    throw error;
   }
 }
 
 const deleteProduct = (id) => {
-  const products = getProducts();
-  const filteredProducts = products.filter(p => p.id !== id);
-  localStorage.setItem('products', JSON.stringify(filteredProducts));
+  try {
+    const products = getProducts();
+    const filteredProducts = products.filter(p => p.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredProducts));
+    return filteredProducts;
+  } catch (error) {
+    console.error('Error deleting product from localStorage:', error);
+    throw error;
+  }
 } 
+const clearAllProducts = () => {
+  localStorage.removeItem(STORAGE_KEY);
+}
 
 export default {
-    getProducts,
-    addProduct,
-    updateProduct,
-    deleteProduct
+  getProducts,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  clearAllProducts
 }
 
 
